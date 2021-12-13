@@ -5,6 +5,8 @@
  */
 
 import Operation from "../Operation.mjs";
+import Utils from "../Utils.mjs";
+import OperationError from "../errors/OperationError.mjs";
 
 class CmacAes extends Operation
 {
@@ -23,7 +25,7 @@ class CmacAes extends Operation
             "name": "Key",
             "type": "toggleString",
             "value": "",
-            "toggleValues": ["Hex"]
+            "toggleValues": ["Hex", "UTF8", "Latin1", "Base64"]
         },
         {
             "name": "Input",
@@ -44,7 +46,8 @@ class CmacAes extends Operation
      */
     run(input, args)
     {
-        return "it works!";
+        var aesCmac = require('node-aes-cmac').aesCmac;
+        return aesCmac(args[0].string, input);
     }
 }
 

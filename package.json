@@ -137,6 +137,7 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "ngeohash": "^0.6.3",
+    "node-aes-cmac": "^0.1.1",
     "node-forge": "^0.10.0",
     "node-md6": "^0.1.0",
     "nodom": "^2.4.0",
