@@ -46,8 +46,9 @@ class CmacAes extends Operation
      */
     run(input, args)
     {
-        var aesCmac = require('node-aes-cmac').aesCmac;
-        return aesCmac(args[0].string, input);
+        var aesCmac = require("node-aes-cmac").aesCmac;
+        var key = args[0].string
+        return aesCmac(Buffer(key, "hex"), Buffer(input, "hex"));
     }
 }
 
