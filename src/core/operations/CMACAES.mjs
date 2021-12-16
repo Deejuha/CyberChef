@@ -1,7 +1,5 @@
 /**
  * @author Michal Juszczyk [michaljuszczyk2@gmail.com]
- * @copyright Crown Copyright 2021
- * @license Apache-2.0
  */
 
 import Operation from "../Operation.mjs";
@@ -46,9 +44,15 @@ class CmacAes extends Operation
      */
     run(input, args)
     {
+        var key = Utils.convertToByteArray(args[0].string, args[0].option)
+        if ([16, 24, 32].indexOf(key.length) < 0) {
+            throw new OperationError(`Invalid key length: ${key.length} bytes.
+Shall be 16, 24 or 32 bytes.`);
+        }
+        var cmac_input = Utils.convertToByteArray(input, "hex")
         var aesCmac = require("node-aes-cmac").aesCmac;
-        var key = args[0].string
-        return aesCmac(Buffer(key, "hex"), Buffer(input, "hex"));
+        // return "" + key.length + "\n" + Buffer(key)
+        return aesCmac(Buffer(key), Buffer(cmac_input));
     }
 }
 
