@@ -3,13 +3,17 @@
  */
 
 import Operation from "../Operation.mjs";
-import Utils from "../Utils.mjs";
 import OperationError from "../errors/OperationError.mjs";
+import Utils from "../Utils.mjs";
 
-class CmacAes extends Operation
-{
-    constructor() 
-    {
+/**
+ * CmacAes operation
+ */
+class CmacAes extends Operation {
+    /**
+     * CmacAes constructor
+     */
+    constructor() {
         super();
 
         this.name = "CMAC AES";
@@ -19,22 +23,22 @@ class CmacAes extends Operation
         this.inputType = "string";
         this.outputType = "string";
         this.args = [
-        {
-            "name": "Key",
-            "type": "toggleString",
-            "value": "",
-            "toggleValues": ["Hex", "UTF8", "Latin1", "Base64"]
-        },
-        {
-            "name": "Input",
-            "type": "option",
-            "value": ["Hex"]
-        },
-        {
-            "name": "Output",
-            "type": "option",
-            "value": ["Hex"]
-        },
+            {
+                "name": "Key",
+                "type": "toggleString",
+                "value": "",
+                "toggleValues": ["Hex", "UTF8", "Latin1", "Base64"]
+            },
+            {
+                "name": "Input",
+                "type": "option",
+                "value": ["Hex", "UTF8", "Latin1", "Base64"]
+            },
+            {
+                "name": "Output",
+                "type": "option",
+                "value": ["Hex"]
+            },
         ];
     }
     /**
@@ -42,17 +46,16 @@ class CmacAes extends Operation
      * @param {Object[]} args
      * @returns {string}
      */
-    run(input, args)
-    {
-        var key = Utils.convertToByteArray(args[0].string, args[0].option)
+    run(input, args) {
+        const key = Utils.convertToByteArray(args[0].string, args[0].option);
         if ([16, 24, 32].indexOf(key.length) < 0) {
             throw new OperationError(`Invalid key length: ${key.length} bytes.
 Shall be 16, 24 or 32 bytes.`);
         }
-        var cmac_input = Utils.convertToByteArray(input, "hex")
-        var aesCmac = require("node-aes-cmac").aesCmac;
-        // return "" + key.length + "\n" + Buffer(key)
-        return aesCmac(Buffer(key), Buffer(cmac_input));
+        const inputType = args[1];
+        const cmacInput = Utils.convertToByteArray(input, inputType);
+        const aesCmac = require("node-aes-cmac").aesCmac;
+        return aesCmac(Buffer(key), Buffer(cmacInput));
     }
 }
 
