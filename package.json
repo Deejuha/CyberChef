@@ -86,6 +86,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@babel/runtime": "^7.15.3",
+    "aes-cmac": "^1.0.2",
     "arrive": "^2.4.1",
     "avsc": "^5.7.3",
     "babel-plugin-transform-builtin-extend": "1.1.2",
@@ -137,7 +138,6 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "ngeohash": "^0.6.3",
-    "node-aes-cmac": "^0.1.1",
     "node-forge": "^0.10.0",
     "node-md6": "^0.1.0",
     "nodom": "^2.4.0",
