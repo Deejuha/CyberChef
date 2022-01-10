@@ -8,8 +8,7 @@ TestRegister.addTests([
     {
         name: "CMAC AES: NIST Test Vector 1 - Message len 0.",
         input: "",
-        // expectedOutput: "bb1d6929e95937287fa37d129b756746",
-        expectedOutput: "111",  // DEBUG PURPOSEES ONLY!
+        expectedOutput: "bb1d6929e95937287fa37d129b756746",
         recipeConfig:
             [
                 {

@@ -2,6 +2,7 @@
  * @author Michal Juszczyk [michaljuszczyk2@gmail.com]
  */
 
+
 import Operation from "../Operation.mjs";
 import OperationError from "../errors/OperationError.mjs";
 import Utils from "../Utils.mjs";
@@ -54,8 +55,7 @@ Shall be 16, 24 or 32 bytes.`);
         }
         const inputType = args[1];
         const cmacInput = Utils.convertToByteArray(input, inputType);
-        const aesCmac = require("node-aes-cmac").aesCmac;
-        return aesCmac(Buffer(key), Buffer(cmacInput));
+        return "WIP";
     }
 }
 
